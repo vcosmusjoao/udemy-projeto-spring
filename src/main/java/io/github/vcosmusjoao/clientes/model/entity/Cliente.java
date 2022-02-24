@@ -2,8 +2,11 @@ package io.github.vcosmusjoao.clientes.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
+import org.hibernate.validator.constraints.br.CPF;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 @Entity
@@ -18,9 +21,12 @@ public class Cliente {
     private Integer id;
 
     @Column(nullable = false,length = 150)//not null,  tamanho do nome do cliente
+    @NotEmpty
     private String nome;
 
     @Column(nullable = false,length = 11)//not null, tamanho do  cpf
+    @NotNull
+    @CPF
     private String cpf;
 
     @Column(name = "data_cadastro",updatable = false)
